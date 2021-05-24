@@ -2,7 +2,7 @@
   <Layout>
     <div class="container">
       <Hero />
-      <ProjectsGrid :projects="$page.projects.edges" />
+      <Post :projects="$page.projects.edges" />
     </div>
     <LatestJournals :journals="$page.journals.edges" />
   </Layout>
@@ -10,15 +10,19 @@
 
 <page-query>
 query Posts {
-	projects: allProjectPost {
-    edges {
-      node {
-        id
-        date (format: "YYYY")
-        title
-        categories
-        thumbnail (quality: 90)
-        path
+	projects: allStrapiPost{
+    edges{
+      node{
+        id,
+        title,
+        thumbnail{
+          id,
+          url
+        },
+        tags {
+          id,
+          title
+        }
       }
     }
   },
@@ -30,20 +34,33 @@ query Posts {
         title
       }
     }
-  }
+  },
+  tag: allStrapiTag {
+    edges {
+      node {
+        id,
+        title
+        }
+      }
+    }
 }
 </page-query>
 
 <script>
 import Hero from "@/components/Hero"
-import ProjectsGrid from "@/components/ProjectsGrid"
+import Post from "@/components/Post"
 import LatestJournals from "@/components/LatestJournals"
 
 export default {
   components: {
     Hero,
-    ProjectsGrid,
+    Post,
     LatestJournals
+  },
+  provide() {
+    return {
+      tag: this.$page.tag.edges
+    }
   }
 }
 </script>

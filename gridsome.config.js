@@ -2,10 +2,10 @@
 // Learn more: https://gridsome.org/docs/config
 
 module.exports = {
-  siteName: "Portfolio",
+  siteName: "首页",
   siteUrl: `https://www.itsnwa.com`,
   host: "0.0.0.0",
-  titleTemplate: "%s - NWA",
+  titleTemplate: "%s - 魏伟的个人博客",
   siteDescription: "Creative technologist",
   plugins: [
     {
@@ -37,7 +37,7 @@ module.exports = {
       options: {
         apiURL: 'http://localhost:1337',
         queryLimit: 1000, // Defaults to 100
-        contentTypes: ['post']
+        contentTypes: ['post', 'tag']
         // singleTypes: ['impressum'],
         // Possibility to login with a Strapi user,
         // when content types are not publicly available (optional).
@@ -48,6 +48,14 @@ module.exports = {
       }
     }
   ],
+  templates: {
+    StrapiPost: [
+      {
+        path: "/post/:id",
+        component: './src/templates/Post.vue'
+      }
+    ]
+  },
   transformers: {
     remark: {
       plugins: ["@gridsome/remark-prismjs"]
