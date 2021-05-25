@@ -7,6 +7,10 @@ module.exports = {
   host: "0.0.0.0",
   titleTemplate: "%s - 魏伟的个人博客",
   siteDescription: "Creative technologist",
+  icon: {
+    favicon: './static/logo.svg',
+    touchicon: './static/logo.svg'
+  },
   plugins: [
     {
       use: "@gridsome/source-filesystem",
@@ -35,7 +39,7 @@ module.exports = {
     {
       use: '@gridsome/source-strapi',
       options: {
-        apiURL: 'http://localhost:1337',
+        apiURL: process.env.GRIDSOME_API_URL,
         queryLimit: 1000, // Defaults to 100
         contentTypes: ['post', 'tag']
         // singleTypes: ['impressum'],

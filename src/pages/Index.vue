@@ -34,15 +34,7 @@ query Posts {
         title
       }
     }
-  },
-  tag: allStrapiTag {
-    edges {
-      node {
-        id,
-        title
-        }
-      }
-    }
+  }
 }
 </page-query>
 
@@ -56,11 +48,6 @@ export default {
     Hero,
     Post,
     LatestJournals
-  },
-  provide() {
-    return {
-      tag: this.$page.tag.edges
-    }
   }
 }
 </script>

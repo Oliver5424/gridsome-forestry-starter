@@ -3,7 +3,7 @@
         <div class="project" v-for="item in projects" :key="item.node.id">
             <g-link :to="'post/' + item.node.id" class="project-link">
             <g-image
-                :src="'http://localhost:1337' + item.node.thumbnail.url"
+                :src="GRIDSOME_API_URL + item.node.thumbnail.url"
                 :alt="item.node.title"
                 class="thumbnail"
             />

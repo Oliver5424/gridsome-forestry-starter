@@ -8,4 +8,11 @@ export default function(Vue, { head }) {
   head.bodyAttrs = {
     class: settings.dark_mode ? "dark" : ""
   };
+  Vue.mixin({
+    data () {
+      return {
+        GRIDSOME_API_URL: process.env.GRIDSOME_API_URL
+      }
+    }
+  })
 }

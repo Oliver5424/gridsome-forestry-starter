@@ -41,7 +41,6 @@ query ($id: ID!) {
     id,
     title,
     content,
-    categories,
     updated_at(format: "YYYY-MM-DD"),
     tags {
       id,
@@ -66,7 +65,15 @@ export default {
   methods: {
     mdToHtml (markdown) {
       console.log(md.render(markdown))
-      return md.render(markdown)
+      const content = md.render(markdown)
+      var newContent= content.replace(/<img [^>]*src=['"]([^'"]+)[^>]*>/gi,
+        (match, capture) => {
+          const index = match.indexOf('src="') + 5
+          const newStr = match.slice(0, index) + this.GRIDSOME_API_URL + match.slice(index)
+          return newStr;
+        })
+      console.log(newContent);
+      return newContent
     }
   }
 }
